@@ -39,7 +39,7 @@ struct tQueue* createQueue(int capacity) {
  * @param A pointer to the queue
  * @param The Value you want to Insert
 */
-int Enqueue(tQueue *queue, int iValueToInsert) {
+int enQueue(tQueue *queue, int iValueToInsert) {
    if (queue->size == queue->capacity) {
       printf("Not enough room to Enqueue\n");
    }
@@ -64,7 +64,7 @@ void PrintList(tQueue *q) {
    printf(" | size=%d | front=%d | rear=%d | *End*\n", q->size, q->front, q->rear);
 }
 
-int Dequeue(tQueue *q) {
+int deQueue(tQueue *q) {
    if (q->size == 0) {
       printf("The queue is empty, nothing do dequeue\n");
    }
@@ -82,23 +82,23 @@ int Dequeue(tQueue *q) {
 int main() {
    tQueue *q = createQueue(100);
    PrintList(q);
-   Enqueue(q,5);
+   enQueue(q,5);
    PrintList(q);
-   Enqueue(q,7);
+   enQueue(q,7);
    PrintList(q);
-   Enqueue(q,3);
+   enQueue(q,3);
    PrintList(q);
-   Dequeue(q);
+   deQueue(q);
    PrintList(q);
-   Enqueue(q,6);
+   enQueue(q,6);
    PrintList(q);
-   Enqueue(q,4);
+   enQueue(q,4);
    PrintList(q);
-   Dequeue(q);
+   deQueue(q);
    PrintList(q);
-   Enqueue(q,8);
+   enQueue(q,8);
    PrintList(q);
-   Enqueue(q,9);
+   enQueue(q,9);
    PrintList(q);
 
    printf("--- end ---\n");
