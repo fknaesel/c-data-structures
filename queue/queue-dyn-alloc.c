@@ -140,29 +140,48 @@ void PrintQueue(tQueue *q) {
    printf(" count=%d *end*\n", q->count);
 }
 
+/**
+ * Check if a value is in the Queue
+ * @param q The queue pointer
+ * @param iSearchValue The value you want to search for
+*/
+int Search(tQueue *q, int iSearchValue) {
+   int iCount = 0;
+   int iFound = 0;
+   tNode *node = q->front;
+   while (node != NULL && node->info != iSearchValue) {
+      iCount++; // increment position
+      node = node->next; // move to the next node
+   }
+   if (node != NULL) {
+      printf("Found: %d is at position %d (0=first)\n", iSearchValue, iCount);
+      return iCount;
+   }
+   else {
+      printf("Not found: %d\n", iSearchValue);
+      return 0;
+   }
+}
+
 int main() {
+   int arr[] = {1,2,3,4,5};
+   int arrSize = sizeof(arr)/sizeof(int);
    tQueue *q = createQueue();
-   PrintQueue(q);
-
-   enQueue(q, 5);
-   PrintQueue(q);
    
-   enQueue(q, 3);
+   for (int i=0; i<arrSize; i++) {
+      enQueue(q, arr[i]);
+   }
    PrintQueue(q);
+
+   Search(q, 7);
    
-   enQueue(q, 1);
-   PrintQueue(q);
-   
-   deQueue(q);
-   PrintQueue(q);
-
-   deQueue(q);
-   PrintQueue(q);
-
-   deQueue(q);
-   PrintQueue(q);
-
-   deQueue(q);
-   PrintQueue(q);
+   // deQueue(q);
+   // PrintQueue(q);
+   // deQueue(q);
+   // PrintQueue(q);
+   // deQueue(q);
+   // PrintQueue(q);
+   // deQueue(q);
+   // PrintQueue(q);
    
 }
