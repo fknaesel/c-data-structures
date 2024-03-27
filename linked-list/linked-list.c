@@ -15,6 +15,7 @@
  * - int deleteLast(tList *list);
  * - int deleteByValue(tList *list, int valueToDelete);
  * - int bubbleSortValue(tList *list);
+ * - int reverseList(tTist* list);
 **/
 
 typedef struct tNode {
@@ -26,6 +27,20 @@ typedef struct tList {
    int count;
    struct tNode *head;
 } tList;
+
+int reverseList(tList *list) {
+   tNode *curr, *prev, *nextsaved;
+   prev = NULL;
+   curr = list->head;
+
+   while (curr!=NULL) {
+      nextsaved = curr->next;
+      curr->next = prev;
+      prev = curr;
+      curr = nextsaved;
+   }
+   list->head = prev;
+}
 
 void printList(tList *list) {
    tNode *node = list->head;
@@ -343,14 +358,16 @@ int main() {
    list->count = 0;
    list->head = NULL;
 
-   int arr[] = {1,6,4,7,2,5,3};
+   int arr[] = {1,2,3,4,5,6,7};
    for (int i=0; i<sizeof(arr)/sizeof(int); i++) {
-      insertEnd(list, arr[i]);   
+      insertEnd(list, arr[i]);
    }
    printList(list);
 
-   bubbleSortSwapValue(list);
-   bubbleSortSwapPointers(list);
+   //bubbleSortSwapValue(list);
+   //bubbleSortSwapPointers(list);
+   reverseList(list);
+   printList(list);
 
    printf("--- end ---\n");
 
